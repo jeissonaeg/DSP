@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #Audio signal lab
 
 This repository is a personal DSP learning laboratory focused on audio signal processing, signal generation, visualization, and algorithm validation. 
@@ -16,4 +15,3 @@ x(t) = A · sin(2πft + φ)
 =======
 # DSP
 A simple lab for learning and experimenting with digital signal processing (DSP).
->>>>>>> e3fa1c13f6d0914eb46c5616b0aeba55a606c701
