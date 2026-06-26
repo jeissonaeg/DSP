@@ -133,3 +133,81 @@ Where:
 * A signal processing project should have a clear structure.
 * Functions allow the same algorithm to be reused with different parameters.
 * Modular code is closer to how real engineering projects are organized.
+
+### 04 - Time Domain Analysis
+
+In this experiment, sine waves were analyzed in the time domain.
+
+The goal was to understand how frequency, period, amplitude, sampling rate, samples per cycle, and phase affect a digital signal.
+
+## Period and Frequency
+
+The period is the duration of one complete cycle of a periodic signal.
+
+```text
+T = 1 / f
+```
+
+For a 5 Hz sine wave:
+
+```text
+T = 1 / 5 = 0.2 seconds
+```
+
+This means that each cycle lasts 0.2 seconds.
+
+## Samples per Cycle
+
+The number of samples per cycle depends on the sampling rate and the signal frequency.
+
+```text
+samples_per_cycle = sample_rate / frequency
+```
+
+For a 5 Hz signal sampled at 1000 Hz:
+
+```text
+samples_per_cycle = 1000 / 5 = 200 samples
+```
+
+This means that each cycle is represented by 200 samples.
+
+## Amplitude Comparison
+
+Changing the amplitude modifies the height of the signal, but it does not change the frequency or the number of cycles.
+
+* Amplitude 1.0
+* Amplitude 2.0
+
+## Frequency Comparison
+
+Changing the frequency modifies how many cycles occur in one second.
+
+* Frequency 5 Hz
+* Frequency 10 Hz
+
+A 5 Hz sine wave has a period of 0.2 seconds, while a 10 Hz sine wave has a period of 0.1 seconds.
+
+## Phase Comparison
+
+Changing the phase shifts the signal horizontally in time.
+
+* Phase 0
+* Phase π/2
+
+A sine wave with phase π/2 looks like a cosine wave because:
+
+```text
+sin(x + π/2) = cos(x)
+```
+
+## What I Learned
+
+* The period is the time duration of one complete cycle.
+* Frequency and period are inversely related.
+* The sampling rate defines how many samples are taken per second.
+* Samples per cycle depend on both sampling rate and signal frequency.
+* Increasing amplitude changes the signal height, not the number of cycles.
+* Increasing frequency increases the number of cycles in the same time interval.
+* Changing phase shifts the signal horizontally.
+* Time-domain analysis helps describe how a digital signal behaves before moving to frequency-domain analysis.
