@@ -211,3 +211,88 @@ sin(x + π/2) = cos(x)
 * Increasing frequency increases the number of cycles in the same time interval.
 * Changing phase shifts the signal horizontally.
 * Time-domain analysis helps describe how a digital signal behaves before moving to frequency-domain analysis.
+
+### 05 - Sampling Analysis
+
+In this experiment, a 5 Hz sine wave was sampled using different sampling rates.
+
+The goal was to understand how the sampling rate affects the digital representation of a signal.
+
+## Sampling Period
+
+The sampling period is the time between two consecutive samples.
+
+```text
+Ts = 1 / sample_rate
+```
+
+For a sampling rate of 1000 Hz:
+
+```text
+Ts = 1 / 1000 = 0.001 seconds
+```
+
+This means that one sample is taken every 1 millisecond.
+
+## Samples per Cycle
+
+The number of samples per cycle depends on the signal frequency and the sampling rate.
+
+```text
+samples_per_cycle = sample_rate / frequency
+```
+
+For a 5 Hz signal:
+
+| Sampling Rate | Samples per Cycle |
+| ------------- | ----------------: |
+| 1000 Hz       |               200 |
+| 100 Hz        |                20 |
+| 50 Hz         |                10 |
+| 20 Hz         |                 4 |
+| 8 Hz          |               1.6 |
+
+## Sampling Comparison
+
+As the sampling rate decreases, the signal is represented with fewer samples.
+
+* 1000 Hz sampling rate
+* 100 Hz sampling rate
+* 50 Hz sampling rate
+* 20 Hz sampling rate
+* 8 Hz sampling rate
+
+## Aliasing
+
+Aliasing occurs when the sampling rate is too low to correctly represent the original signal.
+
+According to the Nyquist criterion:
+
+```text
+sample_rate > 2 × signal_frequency
+```
+
+For a 5 Hz signal:
+
+```text
+sample_rate > 2 × 5 = 10 Hz
+```
+
+When the signal was sampled at 8 Hz, the sampling rate was below the Nyquist limit. As a result, the sampled signal appeared distorted and looked like a lower-frequency signal.
+
+In this case, the apparent alias frequency is approximately:
+
+```text
+alias ≈ |8 Hz - 5 Hz| = 3 Hz
+```
+
+## What I Learned
+
+* The sampling rate defines how many samples are taken per second.
+* The sampling period defines the time between consecutive samples.
+* Lower sampling rates produce fewer samples per cycle.
+* A signal can look less smooth when it is represented with fewer samples.
+* The plotted line is only a visual connection between discrete samples.
+* Aliasing occurs when the sampling rate is below the Nyquist limit.
+* Aliasing can make a signal appear as a false lower frequency.
+* Anti-aliasing filters are important before real ADC sampling.
