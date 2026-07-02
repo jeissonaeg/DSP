@@ -296,3 +296,79 @@ alias ≈ |8 Hz - 5 Hz| = 3 Hz
 * Aliasing occurs when the sampling rate is below the Nyquist limit.
 * Aliasing can make a signal appear as a false lower frequency.
 * Anti-aliasing filters are important before real ADC sampling.
+
+### 06 - Quantization Analysis
+
+In this experiment, a 5 Hz sine wave was quantized using different bit depths.
+
+The goal was to understand how bit resolution affects the amplitude representation of a digital signal.
+
+## Quantization
+
+Quantization is the process of mapping continuous amplitude values into a finite number of discrete levels.
+
+The number of quantization levels depends on the number of bits:
+
+```text
+levels = 2^bits
+```
+
+Examples:
+
+| Bits    | Quantization Levels |
+| ------- | ------------------: |
+| 3 bits  |                   8 |
+| 8 bits  |                 256 |
+| 16 bits |               65536 |
+
+## 3-bit Quantization
+
+With 3 bits, the signal can only be represented using 8 amplitude levels.
+
+This produces visible stair-step behavior.
+
+## 8-bit Quantization
+
+With 8 bits, the signal has 256 possible amplitude levels, so it looks much closer to the original signal.
+
+## 16-bit Quantization
+
+With 16 bits, the signal has 65536 possible amplitude levels, making the quantized signal almost identical to the original signal visually.
+
+## Quantization Error
+
+The quantization error is the difference between the original signal and the quantized signal.
+
+```text
+quantization_error = original_signal - quantized_signal
+```
+
+* Quantization error - 3 bits
+* Quantization error - 8 bits
+* Quantization error - 16 bits
+
+## Mean Absolute Error
+
+The mean absolute error was calculated to numerically compare the quantization error.
+
+```text
+mean_absolute_error = mean(abs(original_signal - quantized_signal))
+```
+
+Results:
+
+| Bits    | Mean Absolute Error |
+| ------- | ------------------: |
+| 3 bits  |          0.06381867 |
+| 8 bits  |          0.00203790 |
+| 16 bits |          0.00000758 |
+
+## What I Learned
+
+* Quantization converts continuous amplitude values into discrete levels.
+* The number of available levels depends on the bit depth.
+* Low bit depth produces visible stair-step distortion.
+* Higher bit depth reduces the quantization error.
+* Quantization error can be measured numerically.
+* Increasing bit depth improves amplitude precision.
+* In audio systems, quantization error can appear as noise or low-level distortion.

@@ -13,7 +13,7 @@ k = 18 #para guardar con numeración en orden
 for i in sample_rates:
     t = generate_time_vector(duration, i)
     signal = generate_sine_wave(A, f, t)
-    samples_per_cycle = sample_rate / f
+    samples_per_cycle = i / f
     plt.figure(figsize = (10,4))
     plt.plot(t, signal, marker="o")
     plt.title(f"5 Hz Sine Wave Sampled at {i} Hz")
