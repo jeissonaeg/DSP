@@ -372,3 +372,77 @@ Results:
 * Quantization error can be measured numerically.
 * Increasing bit depth improves amplitude precision.
 * In audio systems, quantization error can appear as noise or low-level distortion.
+
+### 08 - Frequency Domain Introduction
+
+In this experiment, a composite signal was analyzed in both the time domain and the frequency domain.
+
+The signal was created by adding two sine waves:
+
+```text
+composite_signal = sine_5hz + 0.5 * sine_20hz
+```
+
+## Time Domain
+
+In the time domain, the signal is represented as amplitude versus time.
+
+This view shows the waveform shape, but it is not always easy to identify the exact frequency components.
+
+## Frequency Domain
+
+The Fast Fourier Transform (FFT) was used to transform the signal from the time domain to the frequency domain.
+
+```python
+fft_result = np.fft.fft(composite_signal)
+```
+
+The frequency axis was generated using:
+
+```python
+frequencies = np.fft.fftfreq(len(composite_signal), d=1/sample_rate)
+```
+
+The magnitude spectrum was calculated using:
+
+```python
+magnitude = abs(fft_result)
+```
+
+Only the positive frequencies were analyzed because the input signal was real-valued.
+
+## Normalized Magnitude Spectrum
+
+The FFT magnitude was normalized using:
+
+```python
+normalized_magnitude = (2 / N) * positive_magnitude
+```
+
+where:
+
+```text
+N = number of samples
+```
+
+This normalization makes the spectral peaks match the approximate amplitudes of the original sine wave components.
+
+## Frequency Components Found
+
+The main normalized frequency components were:
+
+| Frequency | Normalized Magnitude |
+| --------- | -------------------: |
+| 5 Hz      |                 1.00 |
+| 20 Hz     |                 0.50 |
+
+## What I Learned
+
+* A signal can be analyzed in the time domain and in the frequency domain.
+* The time domain shows amplitude versus time.
+* The frequency domain shows magnitude versus frequency.
+* The FFT reveals the frequency components inside a signal.
+* A composite signal made of 5 Hz and 20 Hz produces peaks at 5 Hz and 20 Hz.
+* The height of each spectral peak is related to the amplitude of that frequency component.
+* NumPy's FFT is not normalized by default.
+* Normalizing the positive magnitude spectrum makes the result easier to interpret.
