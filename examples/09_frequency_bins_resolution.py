@@ -40,7 +40,7 @@ for d in duration:
 
     #graficamos la señal
     plt.figure(figsize=(10, 4))
-    plt.plot(positive_frequencies, positive_magnitude)
+    plt.plot(positive_frequencies, normalized_magnitude)
     plt.title(f"Frequency Spectrum - Duration {d} s")
     plt.xlabel("Frequency [Hz]")
     plt.ylabel("Magnitude")
