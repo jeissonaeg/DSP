@@ -446,3 +446,92 @@ The main normalized frequency components were:
 * The height of each spectral peak is related to the amplitude of that frequency component.
 * NumPy's FFT is not normalized by default.
 * Normalizing the positive magnitude spectrum makes the result easier to interpret.
+
+### 09 - Frequency Bins and Frequency Resolution
+
+In this experiment, the relationship between signal duration, number of samples, frequency bins, and frequency resolution was analyzed.
+
+A 5 Hz sine wave was generated using different signal durations while keeping the sampling rate fixed.
+
+```text
+sample_rate = 1000 Hz
+frequency = 5 Hz
+```
+
+## Frequency Resolution
+
+The frequency resolution defines the spacing between FFT frequency bins.
+
+```text
+frequency_resolution = sample_rate / N
+```
+
+where:
+
+```text
+N = number of samples
+```
+
+Since:
+
+```text
+N = sample_rate × duration
+```
+
+the frequency resolution can also be understood as:
+
+```text
+frequency_resolution = 1 / duration
+```
+
+This means that longer signals provide better frequency resolution.
+
+## Duration Comparison
+
+| Duration | Number of Samples | Frequency Resolution |
+| -------- | ----------------: | -------------------: |
+| 0.5 s    |               500 |              2.00 Hz |
+| 1.0 s    |              1000 |              1.00 Hz |
+| 2.0 s    |              2000 |              0.50 Hz |
+
+## Frequency Bins
+
+For a duration of 1.0 s, the frequency bins are separated by 1 Hz:
+
+```text
+0 Hz, 1 Hz, 2 Hz, 3 Hz, 4 Hz, 5 Hz, ...
+```
+
+In this case, a 5 Hz sine wave falls exactly on a frequency bin.
+
+For a duration of 0.5 s, the frequency bins are separated by 2 Hz:
+
+```text
+0 Hz, 2 Hz, 4 Hz, 6 Hz, 8 Hz, ...
+```
+
+In this case, a 5 Hz sine wave does not fall exactly on a frequency bin. The energy spreads around nearby bins, making the spectrum less clean.
+
+For a duration of 2.0 s, the frequency bins are separated by 0.5 Hz:
+
+```text
+0 Hz, 0.5 Hz, 1.0 Hz, 1.5 Hz, ..., 5.0 Hz, ...
+```
+
+In this case, 5 Hz falls exactly on a bin again, and the peak appears clean.
+
+## Spectrum Results
+
+* Duration 1.0 s
+* Duration 0.5 s
+* Duration 2.0 s
+
+## What I Learned
+
+* The FFT analyzes specific frequency positions called frequency bins.
+* The number of FFT bins depends on the number of samples.
+* The spacing between bins is called frequency resolution.
+* Frequency resolution is calculated as `sample_rate / N`.
+* Longer signal duration improves frequency resolution.
+* If a signal frequency does not fall exactly on a bin, its energy can spread across nearby bins.
+* This effect is related to spectral leakage, which will be studied later.
