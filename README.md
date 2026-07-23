@@ -1,10 +1,10 @@
 # Audio signal lab
 
-This repository is a personal DSP learning laboratory focused on audio signal processing, signal generation, visualization, and algorithm validation. 
+This repository is a personal DSP learning laboratory focused on audio signal processing, signal generation, visualization, and algorithm validation.
 
 ## Current progress
 
-### 01 - Sin Wave Generation 
+### 01 - Sin Wave Generation
 
 In this firt experiment, a 5 Hz sin wave was generated using Python, Numpy and Matplotlib
 
@@ -14,7 +14,7 @@ The signal is defined as:
 x(t) = A · sin(2πft + φ)
 ```
 
-# DSP
+## DSP
 
 A simple lab for learning and experimenting with digital signal processing (DSP).
 
@@ -24,30 +24,30 @@ In this experiment, different basic digital signals were generated and visualize
 
 The generated signals were:
 
-- Square wave
-- Triangle wave
-- White noise
-- Composite signal
+* Square wave
+* Triangle wave
+* White noise
+* Composite signal
 
-## Square wave
+#### Square wave
 
 A square wave alternates abruptly between high and low amplitude levels.
 
 ![5 Hz Square Wave](results/images/02_square_wave.png)
 
-## Triangle wave
+#### Triangle wave
 
 A triangle wave increases and decreases linearly over time.
 
 ![5 Hz Triangle Wave](results/images/03_triangle_wave.png)
 
-## White noise
+#### White noise
 
 White noise is a random signal with no clear periodic pattern in the time domain.
 
 ![White Noise](results/images/04_white_noise.png)
 
-## Composite signal
+#### Composite signal
 
 The composite signal was created by adding two sine waves:
 
@@ -67,7 +67,7 @@ src/signals.py
 
 This improves the project structure and makes the code easier to reuse, test, maintain, and extend.
 
-## Implemented functions
+#### Implemented functions
 
 The following functions were created:
 
@@ -79,39 +79,39 @@ generate_triangle_wave()
 generate_white_noise()
 ```
 
-## Why this matters
+#### Why this matters
 
 In digital signal processing projects, it is important to separate the algorithm implementation from the example or application code.
 
 This allows the same DSP functions to be reused in different experiments without duplicating code.
 
-## Generated signals using functions
+#### Generated signals using functions
 
-### Sine wave
+##### Sine wave
 
 A sine wave was generated using the reusable `generate_sine_wave()` function.
 
 ![Sine Wave from Function](results/images/06_sine_from_function.png)
 
-### Square wave
+##### Square wave
 
 A square wave was generated using the reusable `generate_square_wave()` function.
 
 ![Square Wave from Function](results/images/07_square_from_function.png)
 
-### Triangle wave
+##### Triangle wave
 
 A triangle wave was generated using the reusable `generate_triangle_wave()` function.
 
 ![Triangle Wave from Function](results/images/08_triangle_from_function.png)
 
-### White noise
+##### White noise
 
 White noise was generated using the reusable `generate_white_noise()` function.
 
 ![White Noise from Function](results/images/09_white_noise_from_function.png)
 
-### Composite signal
+##### Composite signal
 
 A composite signal was created by adding two sine waves generated from the reusable function:
 
@@ -126,7 +126,7 @@ Where:
 
 ![Composite Signal from Functions](results/images/10_composite_from_function.png)
 
-## What I learned
+#### What I learned
 
 * Reusable functions make DSP code cleaner and easier to maintain.
 * Signal generation formulas should be separated from plotting and example scripts.
@@ -140,7 +140,7 @@ In this experiment, sine waves were analyzed in the time domain.
 
 The goal was to understand how frequency, period, amplitude, sampling rate, samples per cycle, and phase affect a digital signal.
 
-## Period and Frequency
+#### Period and Frequency
 
 The period is the duration of one complete cycle of a periodic signal.
 
@@ -156,7 +156,7 @@ T = 1 / 5 = 0.2 seconds
 
 This means that each cycle lasts 0.2 seconds.
 
-## Samples per Cycle
+#### Samples per Cycle
 
 The number of samples per cycle depends on the sampling rate and the signal frequency.
 
@@ -172,14 +172,14 @@ samples_per_cycle = 1000 / 5 = 200 samples
 
 This means that each cycle is represented by 200 samples.
 
-## Amplitude Comparison
+#### Amplitude Comparison
 
 Changing the amplitude modifies the height of the signal, but it does not change the frequency or the number of cycles.
 
 * Amplitude 1.0
 * Amplitude 2.0
 
-## Frequency Comparison
+#### Frequency Comparison
 
 Changing the frequency modifies how many cycles occur in one second.
 
@@ -188,7 +188,7 @@ Changing the frequency modifies how many cycles occur in one second.
 
 A 5 Hz sine wave has a period of 0.2 seconds, while a 10 Hz sine wave has a period of 0.1 seconds.
 
-## Phase Comparison
+#### Phase Comparison
 
 Changing the phase shifts the signal horizontally in time.
 
@@ -201,7 +201,7 @@ A sine wave with phase π/2 looks like a cosine wave because:
 sin(x + π/2) = cos(x)
 ```
 
-## What I Learned
+#### What I Learned
 
 * The period is the time duration of one complete cycle.
 * Frequency and period are inversely related.
@@ -218,7 +218,7 @@ In this experiment, a 5 Hz sine wave was sampled using different sampling rates.
 
 The goal was to understand how the sampling rate affects the digital representation of a signal.
 
-## Sampling Period
+#### Sampling Period
 
 The sampling period is the time between two consecutive samples.
 
@@ -234,7 +234,7 @@ Ts = 1 / 1000 = 0.001 seconds
 
 This means that one sample is taken every 1 millisecond.
 
-## Samples per Cycle
+#### Samples per Cycle
 
 The number of samples per cycle depends on the signal frequency and the sampling rate.
 
@@ -252,7 +252,7 @@ For a 5 Hz signal:
 | 20 Hz         |                 4 |
 | 8 Hz          |               1.6 |
 
-## Sampling Comparison
+#### Sampling Comparison
 
 As the sampling rate decreases, the signal is represented with fewer samples.
 
@@ -262,7 +262,7 @@ As the sampling rate decreases, the signal is represented with fewer samples.
 * 20 Hz sampling rate
 * 8 Hz sampling rate
 
-## Aliasing
+#### Aliasing
 
 Aliasing occurs when the sampling rate is too low to correctly represent the original signal.
 
@@ -286,7 +286,7 @@ In this case, the apparent alias frequency is approximately:
 alias ≈ |8 Hz - 5 Hz| = 3 Hz
 ```
 
-## What I Learned
+#### What I Learned
 
 * The sampling rate defines how many samples are taken per second.
 * The sampling period defines the time between consecutive samples.
@@ -303,7 +303,7 @@ In this experiment, a 5 Hz sine wave was quantized using different bit depths.
 
 The goal was to understand how bit resolution affects the amplitude representation of a digital signal.
 
-## Quantization
+#### Quantization
 
 Quantization is the process of mapping continuous amplitude values into a finite number of discrete levels.
 
@@ -321,21 +321,21 @@ Examples:
 | 8 bits  |                 256 |
 | 16 bits |               65536 |
 
-## 3-bit Quantization
+#### 3-bit Quantization
 
 With 3 bits, the signal can only be represented using 8 amplitude levels.
 
 This produces visible stair-step behavior.
 
-## 8-bit Quantization
+#### 8-bit Quantization
 
 With 8 bits, the signal has 256 possible amplitude levels, so it looks much closer to the original signal.
 
-## 16-bit Quantization
+#### 16-bit Quantization
 
 With 16 bits, the signal has 65536 possible amplitude levels, making the quantized signal almost identical to the original signal visually.
 
-## Quantization Error
+#### Quantization Error
 
 The quantization error is the difference between the original signal and the quantized signal.
 
@@ -347,7 +347,7 @@ quantization_error = original_signal - quantized_signal
 * Quantization error - 8 bits
 * Quantization error - 16 bits
 
-## Mean Absolute Error
+#### Mean Absolute Error
 
 The mean absolute error was calculated to numerically compare the quantization error.
 
@@ -363,7 +363,7 @@ Results:
 | 8 bits  |          0.00203790 |
 | 16 bits |          0.00000758 |
 
-## What I Learned
+#### What I Learned
 
 * Quantization converts continuous amplitude values into discrete levels.
 * The number of available levels depends on the bit depth.
@@ -372,6 +372,65 @@ Results:
 * Quantization error can be measured numerically.
 * Increasing bit depth improves amplitude precision.
 * In audio systems, quantization error can appear as noise or low-level distortion.
+
+### 07 - Week 01 Review
+
+In this experiment, the concepts studied during the first week were reviewed using a composite signal, a lower sampling rate, and 4-bit quantization.
+
+The composite signal was created by adding two sine waves:
+
+```text
+composite_signal = sine_5hz + sine_20hz
+```
+
+Where:
+
+* `sine_5hz` has frequency 5 Hz and amplitude 1.0.
+* `sine_20hz` has frequency 20 Hz and amplitude 0.5.
+
+#### Composite Signal
+
+The composite signal was generated using a sampling rate of 1000 Hz.
+
+```text
+sample_rate = 1000 Hz
+```
+
+![Week 01 Review - Composite Signal](results/images/29_week_01_composite_signal.png)
+
+#### Low Sampling Rate
+
+The same composite signal was generated again using a lower sampling rate.
+
+```text
+sample_rate_low = 30 Hz
+```
+
+With a lower sampling rate, the signal is represented with fewer samples.
+
+![Week 01 Review - Low Sampling Rate](results/images/30_week_01_low_sampling_rate.png)
+
+#### 4-bit Quantization
+
+The composite signal was quantized using 4 bits.
+
+```text
+bits = 4
+levels = 2^bits = 16
+```
+
+This means that the signal can be represented using 16 amplitude levels.
+
+![Week 01 Review - 4-bit Quantization](results/images/31_week_01_4bit_quantization.png)
+
+#### What I Learned
+
+* A composite signal can be created by adding sine waves with different frequencies and amplitudes.
+* Lower sampling rates represent the signal with fewer samples.
+* Sampling rate affects how smooth the digital representation looks.
+* Quantization reduces continuous amplitude values into discrete levels.
+* A 4-bit signal has 16 possible quantization levels.
+* Reviewing previous experiments helps connect signal generation, sampling, and quantization.
 
 ### 08 - Frequency Domain Introduction
 
@@ -383,13 +442,13 @@ The signal was created by adding two sine waves:
 composite_signal = sine_5hz + 0.5 * sine_20hz
 ```
 
-## Time Domain
+#### Time Domain
 
 In the time domain, the signal is represented as amplitude versus time.
 
 This view shows the waveform shape, but it is not always easy to identify the exact frequency components.
 
-## Frequency Domain
+#### Frequency Domain
 
 The Fast Fourier Transform (FFT) was used to transform the signal from the time domain to the frequency domain.
 
@@ -411,7 +470,7 @@ magnitude = abs(fft_result)
 
 Only the positive frequencies were analyzed because the input signal was real-valued.
 
-## Normalized Magnitude Spectrum
+#### Normalized Magnitude Spectrum
 
 The FFT magnitude was normalized using:
 
@@ -427,7 +486,7 @@ N = number of samples
 
 This normalization makes the spectral peaks match the approximate amplitudes of the original sine wave components.
 
-## Frequency Components Found
+#### Frequency Components Found
 
 The main normalized frequency components were:
 
@@ -436,7 +495,7 @@ The main normalized frequency components were:
 | 5 Hz      |                 1.00 |
 | 20 Hz     |                 0.50 |
 
-## What I Learned
+#### What I Learned
 
 * A signal can be analyzed in the time domain and in the frequency domain.
 * The time domain shows amplitude versus time.
@@ -458,7 +517,7 @@ sample_rate = 1000 Hz
 frequency = 5 Hz
 ```
 
-## Frequency Resolution
+#### Frequency Resolution
 
 The frequency resolution defines the spacing between FFT frequency bins.
 
@@ -486,7 +545,7 @@ frequency_resolution = 1 / duration
 
 This means that longer signals provide better frequency resolution.
 
-## Duration Comparison
+#### Duration Comparison
 
 | Duration | Number of Samples | Frequency Resolution |
 | -------- | ----------------: | -------------------: |
@@ -494,7 +553,7 @@ This means that longer signals provide better frequency resolution.
 | 1.0 s    |              1000 |              1.00 Hz |
 | 2.0 s    |              2000 |              0.50 Hz |
 
-## Frequency Bins
+#### Frequency Bins
 
 For a duration of 1.0 s, the frequency bins are separated by 1 Hz:
 
@@ -520,13 +579,13 @@ For a duration of 2.0 s, the frequency bins are separated by 0.5 Hz:
 
 In this case, 5 Hz falls exactly on a bin again, and the peak appears clean.
 
-## Spectrum Results
+#### Spectrum Results
 
 * Duration 1.0 s
 * Duration 0.5 s
 * Duration 2.0 s
 
-## What I Learned
+#### What I Learned
 
 * The FFT analyzes specific frequency positions called frequency bins.
 * The number of FFT bins depends on the number of samples.
