@@ -594,3 +594,109 @@ In this case, 5 Hz falls exactly on a bin again, and the peak appears clean.
 * Longer signal duration improves frequency resolution.
 * If a signal frequency does not fall exactly on a bin, its energy can spread across nearby bins.
 * This effect is related to spectral leakage, which will be studied later.
+
+## 10. Spectral Leakage
+
+In this experiment, spectral leakage was analyzed by comparing two sinusoidal signals:
+
+* **5 Hz:** falls exactly on an FFT frequency bin.
+* **5.5 Hz:** falls between two FFT frequency bins.
+
+The objective was to understand what happens in the frequency spectrum when the signal frequency does not align exactly with one of the frequencies evaluated by the FFT.
+
+### Frequency Resolution
+
+The experiment used the following parameters:
+
+```python
+sample_rate = 1000  # Hz
+duration = 1.0      # seconds
+N = 1000            # samples
+```
+
+The FFT frequency resolution is calculated as:
+
+```text
+frequency_resolution = sample_rate / N
+frequency_resolution = 1000 / 1000
+frequency_resolution = 1 Hz
+```
+
+Therefore, the FFT bins are located at:
+
+```text
+0 Hz, 1 Hz, 2 Hz, 3 Hz, 4 Hz, 5 Hz, 6 Hz, ...
+```
+
+---
+
+### 5 Hz Signal
+
+The 5 Hz signal completes exactly five cycles during the one-second analysis window:
+
+```text
+cycles = frequency × duration
+cycles = 5 Hz × 1 s
+cycles = 5
+```
+
+Because the signal contains an integer number of cycles and its frequency aligns exactly with the 5 Hz FFT bin, the beginning and end of the analyzed block connect smoothly when the block is treated as periodic.
+
+As a result, the frequency spectrum shows a clean and concentrated peak at **5 Hz**, with little or no energy in the neighboring bins.
+
+---
+
+### 5.5 Hz Signal
+
+The 5.5 Hz signal completes five and a half cycles during the same analysis window:
+
+```text
+cycles = frequency × duration
+cycles = 5.5 Hz × 1 s
+cycles = 5.5
+```
+
+Since 5.5 Hz falls between the 5 Hz and 6 Hz FFT bins, the FFT cannot represent the signal using a single frequency bin.
+
+Additionally, the analyzed block does not end at the same phase at which it started. When the FFT treats this block as periodically repeated, a discontinuity appears between consecutive repetitions.
+
+This discontinuity causes the signal energy to spread across multiple frequency bins instead of remaining concentrated at a single frequency.
+
+This phenomenon is known as **spectral leakage**.
+
+---
+
+### Comparison
+
+| Signal frequency | Cycles in the window | FFT-bin alignment     | Spectrum result                    |
+| ---------------- | -------------------: | --------------------- | ---------------------------------- |
+| 5 Hz             |                    5 | Exact alignment       | Clean peak at 5 Hz                 |
+| 5.5 Hz           |                  5.5 | Between 5 Hz and 6 Hz | Energy spreads across several bins |
+
+The 5 Hz signal produces a clean spectral peak because it aligns with an FFT bin and completes an integer number of cycles within the analysis window.
+
+The 5.5 Hz signal produces spectral leakage because it does not align with an FFT bin and completes a non-integer number of cycles within the analysis window.
+
+---
+
+### What I Learned
+
+* The FFT evaluates a discrete set of frequency positions called **frequency bins**.
+
+* The spacing between frequency bins is determined by the frequency resolution:
+
+  ```text
+  frequency_resolution = sample_rate / N
+  ```
+
+* A sinusoidal signal produces a clean and concentrated spectral peak when its frequency aligns exactly with an FFT bin.
+
+* A signal that completes an integer number of cycles inside the analysis window tends to produce a cleaner spectrum.
+
+* Spectral leakage occurs when the signal frequency does not align with an FFT bin.
+
+* When spectral leakage occurs, the signal energy spreads across multiple frequency bins.
+
+* A non-integer number of cycles inside the analysis window creates a discontinuity when the block is treated as periodic.
+
+* Spectral leakage occurs because the FFT assumes that the analyzed signal block repeats indefinitely.
