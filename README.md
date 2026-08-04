@@ -782,3 +782,87 @@ The Hann window reduced the side lobes compared to the signal without a window.
 - The trade-off is that the main lobe becomes wider.
 - The measured amplitude can change when a window is applied.
 - Windowing is useful for spectral analysis, especially when signals do not contain an integer number of cycles in the analysis window.
+
+### 12 - Window Functions Comparison
+
+In this experiment, different window functions were compared using a 5.5 Hz sine wave.
+
+The signal frequency did not fall exactly on an FFT bin, so spectral leakage appeared.
+
+The goal was to compare how different windows affect:
+
+- spectral leakage
+- side lobes
+- main lobe width
+- apparent amplitude
+
+## Window functions
+
+The following windows were compared:
+
+```text
+Rectangular
+Hann
+Hamming
+Blackman
+```
+
+The rectangular window is equivalent to using no window.
+
+## Window shapes
+
+The shape of each window was first analyzed in the time domain.
+
+![Window Functions Comparison](results/images/47_window_functions_comparison.png)
+
+## Windowed signals
+
+Each window was multiplied by the original 5.5 Hz sine wave.
+
+```text
+windowed_signal = signal × window
+```
+
+The rectangular window preserved the original signal, while Hann, Hamming, and Blackman modified the beginning and end of the signal block.
+
+![Windowed Signals Comparison](results/images/48_windowed_signals_comparison.png)
+
+## Rectangular window spectrum
+
+The rectangular window produced a narrower main peak, but stronger side lobes and more visible spectral leakage.
+
+![Rectangular Window Spectrum](results/images/49_rectangular_window_spectrum.png)
+
+## Hann window spectrum
+
+The Hann window reduced the side lobes compared to the rectangular window, but the main lobe became wider.
+
+![Hann Window Spectrum](results/images/50_hann_window_spectrum.png)
+
+## Hamming window spectrum
+
+The Hamming window behaved similarly to the Hann window, reducing leakage while also widening the main lobe.
+
+![Hamming Window Spectrum](results/images/51_hamming_window_spectrum.png)
+
+## Blackman window spectrum
+
+The Blackman window reduced the side lobes even more, but produced a wider main lobe.
+
+![Blackman Window Spectrum](results/images/52_blackman_window_spectrum.png)
+
+## Window spectrum comparison
+
+The final comparison showed the trade-off between reducing spectral leakage and preserving frequency resolution.
+
+![Window Spectrum Comparison](results/images/53_window_spectrum_comparison.png)
+
+## What I learned
+
+- Different windows affect the FFT spectrum in different ways.
+- The rectangular window has a narrow main lobe but higher side lobes.
+- Hann and Hamming windows reduce spectral leakage compared to the rectangular window.
+- The Blackman window reduces side lobes even more, but widens the main lobe.
+- There is a trade-off between leakage reduction and frequency resolution.
+- Lower side lobes help reveal weaker frequency components.
+- A wider main lobe makes it harder to separate frequencies that are close together.
