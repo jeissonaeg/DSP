@@ -700,3 +700,85 @@ The 5.5 Hz signal produces spectral leakage because it does not align with an FF
 * A non-integer number of cycles inside the analysis window creates a discontinuity when the block is treated as periodic.
 
 * Spectral leakage occurs because the FFT assumes that the analyzed signal block repeats indefinitely.
+
+### 11 - Hann Window and Spectral Leakage Reduction
+
+In this experiment, a Hann window was applied to a 5.5 Hz sine wave to observe how windowing affects spectral leakage.
+
+The signal used was:
+
+```text
+frequency = 5.5 Hz
+sample_rate = 1000 Hz
+duration = 1.0 s
+```
+
+Since the frequency resolution was:
+
+```text
+frequency_resolution = sample_rate / N
+frequency_resolution = 1000 / 1000
+frequency_resolution = 1 Hz
+```
+
+the FFT bins were located at:
+
+```text
+0 Hz, 1 Hz, 2 Hz, 3 Hz, 4 Hz, 5 Hz, 6 Hz, ...
+```
+
+The 5.5 Hz signal did not fall exactly on a frequency bin, so spectral leakage appeared.
+
+## Hann window
+
+A Hann window was created and applied to the signal before calculating the FFT.
+
+The Hann window starts near zero, rises smoothly to almost one in the center, and returns to zero at the end.
+
+![Hann Window Shape](results/images/41_hann_window_shape.png)
+
+## Signal without window
+
+The original 5.5 Hz signal was analyzed without applying any window.
+
+![5.5 Hz Signal Without Window](results/images/42_signal_5_5hz_without_window.png)
+
+## Signal with Hann window
+
+The Hann window was multiplied by the original signal.
+
+This made the beginning and end of the signal block smoother.
+
+![5.5 Hz Signal With Hann Window](results/images/43_signal_5_5hz_with_hann_window.png)
+
+## Frequency spectrum without window
+
+Without a window, the spectrum showed noticeable spectral leakage.
+
+The energy spread across several nearby frequency bins.
+
+![Spectral Leakage Without Window](results/images/44_spectral_leakage_without_window.png)
+
+## Frequency spectrum with Hann window
+
+With the Hann window, the lateral leakage was reduced.
+
+However, the main peak became wider and the measured amplitude changed.
+
+![Spectral Leakage With Hann Window](results/images/45_spectral_leakage_with_hann_window.png)
+
+## Comparison
+
+The Hann window reduced the side lobes compared to the signal without a window.
+
+![Windowing Comparison](results/images/46_windowing_comparison.png)
+
+## What I learned
+
+- Spectral leakage occurs when a signal frequency does not fall exactly on an FFT bin.
+- A Hann window smooths the beginning and end of the signal block.
+- Windowing reduces artificial discontinuities when the FFT treats the block as periodic.
+- The Hann window reduces side lobes and spectral leakage.
+- The trade-off is that the main lobe becomes wider.
+- The measured amplitude can change when a window is applied.
+- Windowing is useful for spectral analysis, especially when signals do not contain an integer number of cycles in the analysis window.
