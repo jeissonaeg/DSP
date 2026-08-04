@@ -866,3 +866,98 @@ The final comparison showed the trade-off between reducing spectral leakage and 
 - There is a trade-off between leakage reduction and frequency resolution.
 - Lower side lobes help reveal weaker frequency components.
 - A wider main lobe makes it harder to separate frequencies that are close together.
+
+### 13 - Zero Padding
+
+In this experiment, zero padding was analyzed using a 5.5 Hz sine wave.
+
+The goal was to understand how adding zeros before calculating the FFT affects the frequency spectrum.
+
+The signal used was:
+
+```text
+frequency = 5.5 Hz
+sample_rate = 1000 Hz
+duration = 1.0 s
+```
+
+The number of real samples was:
+
+```text
+N = sample_rate × duration
+N = 1000 × 1.0
+N = 1000 samples
+```
+
+Two FFT sizes were compared:
+
+```text
+FFT size without padding = 1000
+FFT size with padding = 4096
+```
+
+## Frequency spacing
+
+Without zero padding:
+
+```text
+bin_spacing = sample_rate / N_fft
+bin_spacing = 1000 / 1000
+bin_spacing = 1.0 Hz
+```
+
+With zero padding:
+
+```text
+bin_spacing = sample_rate / N_fft
+bin_spacing = 1000 / 4096
+bin_spacing ≈ 0.244 Hz
+```
+
+However, the true frequency resolution was still:
+
+```text
+true_frequency_resolution = 1 / duration
+true_frequency_resolution = 1 / 1.0
+true_frequency_resolution = 1.0 Hz
+```
+
+This is because the real observation time was still only 1 second.
+
+## Spectrum without zero padding
+
+Without zero padding, the FFT had fewer frequency points. Since the signal frequency was 5.5 Hz and the bin spacing was 1 Hz, the peak appeared at the closest available bin.
+
+![Spectrum Without Zero Padding](results/images/54_spectrum_without_zero_padding.png)
+
+## Spectrum with zero padding
+
+With zero padding, the FFT had more frequency points. The spectrum looked smoother and the peak appeared closer to the real signal frequency.
+
+![Spectrum With Zero Padding](results/images/55_spectrum_with_zero_padding.png)
+
+## Zero padding comparison
+
+The comparison showed that zero padding makes the spectrum visually smoother, but it does not improve the real frequency resolution.
+
+![Zero Padding Comparison](results/images/56_zero_padding_comparison.png)
+
+## Results
+
+```text
+Peak without padding: 5 Hz
+Peak with padding: 5.37109375 Hz
+```
+
+The padded FFT estimated the peak closer to 5.5 Hz, but this happened because the frequency grid became denser, not because new signal information was created.
+
+## What I learned
+
+- Zero padding adds zeros to the signal before calculating the FFT.
+- Zero padding increases the number of FFT points.
+- Zero padding makes the frequency axis denser.
+- Zero padding makes the spectrum look smoother.
+- Zero padding can make the peak appear closer to the real frequency.
+- Zero padding does not improve the true frequency resolution.
+- True frequency resolution depends on the real observation duration.
+- More real signal duration improves frequency resolution; more zeros only improves visualization.

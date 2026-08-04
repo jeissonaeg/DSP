@@ -66,7 +66,6 @@ plt.savefig(f"results/images/48_windowed_signals_comparison.png")
 plt.show()
 
 #ahora aplicamos la fft
-
 fft_signal_rectangular = np.fft.fft (signal_rectangular)
 fft_signal_hann = np.fft.fft (signal_hann)
 fft_signal_hamming = np.fft.fft (signal_hamming)
